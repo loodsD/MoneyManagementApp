@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/home"
+        android:title="Home"
+        android:icon="@drawable/ic_baseline_home_24"/>
+
+    <item
+        android:id="@+id/input"
+        android:title="Input budget"
+        android:icon="@drawable/ic_baseline_attach_money_24"/>
+
+    <item
+        android:id="@+id/spending"
+        android:title="Spending"
+        android:icon="@drawable/ic_baseline_auto_graph_24"/>
+
+    <item
+        android:id="@+id/calculator"
+        android:title="Calculator"
+        android:icon="@drawable/ic_baseline_calculate_24"/>
+</menu>
