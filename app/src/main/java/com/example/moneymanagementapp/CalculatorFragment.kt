@@ -1,20 +1,116 @@
 package com.example.moneymanagementapp
 
+import android.app.AlertDialog
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
+import android.widget.*
+import android.view.View
 
 
-class CalculatorFragment : Fragment() {
+class CalculatorFragment : Fragment(R.layout.fragment_calculator) {
+    lateinit var option : Spinner
+    lateinit var editTextLoanAmount: EditText
+    lateinit var editTextInterestRate: EditText
+    lateinit var editTextMonthlyPay: EditText
+    lateinit var price: EditText
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_calculator, container, false)
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        option = view.findViewById(R.id.productBox)
+        editTextLoanAmount = view.findViewById(R.id.editTextLoanAmount)
+        editTextInterestRate = view.findViewById(R.id.editTextInterestRate)
+        editTextMonthlyPay = view.findViewById(R.id.editTextMonthlyPay)
+        price = view.findViewById(R.id.priceInput)
+
+        val options = arrayOf("Car", "House", "Others")
+
+        option.adapter = ArrayAdapter<String>(requireContext(), android.R.layout.simple_list_item_1, options)
+
+
+        val loanCalculate: Button = view.findViewById(R.id.loanCalculatorButton)
+        val builder = AlertDialog.Builder(context)
+        loanCalculate.setOnClickListener(){
+            val loanAmount = editTextLoanAmount.text.toString().toDouble()
+            val interestRate = editTextInterestRate.text.toString().toDouble()
+            val monthlyPay = editTextMonthlyPay.text.toString().toDouble()
+            val yearToBePaid = calculateYear(loanAmount,interestRate,monthlyPay)
+            if(yearToBePaid != 0){
+                builder.setTitle("How many years needed to clear the loan")
+                builder.setMessage("You need roughly "+yearToBePaid.toString()+" years to finish the loan")
+                builder.setPositiveButton("OK") { dialog, which ->
+                    onStop()
+                }
+                val dialog: AlertDialog = builder.create()
+                dialog.show()
+            }else{
+                builder.setTitle("The interest is STAKING higher than your pay")
+                builder.setMessage("You need to add more monthly pay to finish the loan")
+                builder.setPositiveButton("OK") { dialog, which ->
+                    onStop()
+                }
+                val dialog: AlertDialog = builder.create()
+                dialog.show()
+            }
+        }
+
+        val purchasingPowerCalculate:Button = view.findViewById(R.id.purchasingPowerCalculatorButton)
+        purchasingPowerCalculate.setOnClickListener(){
+            val selectedOption = options[option.selectedItemPosition].toString()
+            val priceProduct = price.text.toString().toDouble()
+            builder.setTitle("Your Purchasing Power")
+            var powerValue : Double;
+            if(selectedOption == "House"){
+                powerValue = Math.ceil(priceProduct*1.3/300)
+                builder.setMessage("You need to have an extra amount of RM$powerValue to own this house.")
+            }else if(selectedOption == "Car"){
+                powerValue = Math.ceil(priceProduct*1.3/84)
+                builder.setMessage("You need to have an extra amount of RM$powerValue to own this car.")
+            }else{
+                powerValue = Math.ceil(priceProduct*1.3/12)
+                builder.setMessage("You need to have an extra amount of RM$powerValue to own this product in 1 year.")
+            }
+
+            builder.setPositiveButton("OK") { dialog, which ->
+                onStop()
+            }
+            val dialog: AlertDialog = builder.create()
+            dialog.show()
+        }
+    }
+    fun calculateYear(loanAmount:Double,interestRate:Double,monthlyPay:Double) : Int{
+        if(loanAmount*(interestRate/100) > monthlyPay*12){
+            return 0
+        }
+        var currentLoan = loanAmount
+        var year:Int = 0
+        while(currentLoan > 0){
+            currentLoan = currentLoan*((100+interestRate)/100)
+            currentLoan -= monthlyPay*12
+            year++
+        }
+        return year
+    }
+    override fun onDestroyView() {
+        super.onDestroyView()
+        option.onItemSelectedListener = null
+    }
+
+    override fun onDetach() {
+        super.onDetach()
+        option.onItemSelectedListener = null
+    }
+    override fun onStop() {
+        super.onStop()
+        // Reset views here
+        editTextLoanAmount.setText("")
+        editTextInterestRate.setText("")
+        editTextMonthlyPay.setText("")
+        option.setSelection(0)
+        price.setText("")
     }
 
 }

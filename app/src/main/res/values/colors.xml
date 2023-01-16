@@ -7,5 +7,7 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="slightWhite">#FFF9F9</color>
     <color name="myBox">#F8F2F2</color>
+    <color name="yellow">#FFF303</color>
 </resources>

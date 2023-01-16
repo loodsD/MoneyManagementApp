@@ -8,7 +8,7 @@
 
     <com.google.android.material.appbar.MaterialToolbar
         android:id="@+id/materialToolbar"
-        android:layout_width="411dp"
+        android:layout_width="match_parent"
         android:layout_height="205dp"
         android:background="@color/myBox"
         android:minHeight="?attr/actionBarSize"
@@ -18,49 +18,52 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName"
+        android:id="@+id/editTextLoanAmount"
         android:layout_width="wrap_content"
         android:layout_height="35dp"
+        android:layout_marginStart="9dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/edittext_border"
         android:ems="10"
         android:inputType="number"
-        android:background="@drawable/edittext_border"
-        android:layout_marginStart="25dp"
-        android:layout_marginTop="25dp"
+        android:padding="5dp"
         app:layout_constraintStart_toEndOf="@+id/loanAmount"
         app:layout_constraintTop_toTopOf="@+id/materialToolbar" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName2"
+        android:id="@+id/editTextInterestRate"
         android:layout_width="wrap_content"
         android:layout_height="35dp"
         android:ems="10"
+        android:padding="5dp"
         android:inputType="number"
         android:background="@drawable/edittext_border"
         android:layout_marginStart="25dp"
         android:layout_marginTop="25dp"
         app:layout_constraintStart_toEndOf="@+id/interestRate"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextLoanAmount" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName3"
+        android:id="@+id/editTextMonthlyPay"
         android:layout_width="wrap_content"
         android:layout_height="35dp"
         android:ems="10"
+        android:padding="5dp"
         android:inputType="number"
         android:background="@drawable/edittext_border"
         android:layout_marginStart="25dp"
         android:layout_marginTop="25dp"
         app:layout_constraintStart_toEndOf="@+id/monthlyPay"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName2" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextInterestRate" />
 
 
     <TextView
         android:id="@+id/loanAmount"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Loaning Amount:"
+        android:text="Loaning Amount(RM):"
         android:padding="7dp"
-        android:layout_marginStart="20dp"
+        android:layout_marginStart="2dp"
         android:layout_marginTop="25dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@id/materialToolbar" />
@@ -80,12 +83,118 @@
         android:id="@+id/monthlyPay"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Monthly Pay:"
+        android:text="Monthly Pay(RM):"
         android:padding="7dp"
-        android:layout_marginStart="47dp"
+        android:layout_marginStart="15dp"
         android:layout_marginTop="25dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/interestRate" />
+
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/loanCalculator"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/slightWhite"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/materialToolbar" />
+
+    <Button
+        android:id="@+id/loanCalculatorButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Loaning Calculator"
+        android:padding="5dp"
+        android:layout_marginStart="110dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/materialToolbar"
+        app:layout_constraintBottom_toBottomOf="@id/loanCalculator" />
+
+
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/productToolBar"
+        android:layout_width="match_parent"
+        android:layout_height="140dp"
+        android:layout_marginTop="30dp"
+        android:background="@color/myBox"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/loanCalculator" />
+
+    <TextView
+        android:id="@+id/product"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Product:"
+        android:layout_marginStart="84dp"
+        android:layout_marginTop="25dp"
+        android:padding="7dp"
+        app:layout_constraintTop_toTopOf="@id/productToolBar"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Spinner
+        android:id="@+id/productBox"
+        android:layout_width="wrap_content"
+        android:layout_height="35dp"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="25dp"
+        android:theme="@style/Theme.MaterialComponents.Light"
+        android:spinnerMode="dropdown"
+        android:popupBackground="@color/white"
+        android:background="@drawable/edittext_border"
+        app:layout_constraintTop_toTopOf="@id/productToolBar"
+        app:layout_constraintStart_toEndOf="@id/product" />
+
+    <TextView
+        android:id="@+id/price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Product Price(RM):"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="25dp"
+        android:padding="7dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/product" />
+
+    <EditText
+        android:id="@+id/priceInput"
+        android:layout_width="wrap_content"
+        android:layout_height="35dp"
+        android:ems="10"
+        android:padding="5dp"
+        android:inputType="number"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="25dp"
+        android:background="@drawable/edittext_border"
+        app:layout_constraintStart_toEndOf="@+id/price"
+        app:layout_constraintTop_toBottomOf="@+id/productBox"/>
+
+
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/purchasingPowerCalculator"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/slightWhite"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/productToolBar" />
+
+    <Button
+        android:id="@+id/purchasingPowerCalculatorButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Purchasing Power Calculator"
+        android:padding="5dp"
+        android:layout_marginStart="70dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/purchasingPowerCalculator"
+        app:layout_constraintBottom_toBottomOf="@id/purchasingPowerCalculator" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
