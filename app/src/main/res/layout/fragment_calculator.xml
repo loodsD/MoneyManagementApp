@@ -6,16 +6,33 @@
     android:layout_height="match_parent"
     tools:context=".CalculatorFragment">
 
+    <TextView
+        android:id="@+id/LoaningCal"
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:layout_margin="8dp"
+        android:background="@color/black"
+        android:text="LOANING CALCULATOR"
+        android:textAlignment="center"
+        android:textColor="@color/cardview_light_background"
+        android:textSize="24dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <com.google.android.material.appbar.MaterialToolbar
         android:id="@+id/materialToolbar"
         android:layout_width="match_parent"
         android:layout_height="205dp"
+        android:layout_marginTop="8dp"
         android:background="@color/grey"
         android:minHeight="?attr/actionBarSize"
         android:theme="?attr/actionBarTheme"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toEndOf="@id/LoaningCal"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/LoaningCal" />
 
     <EditText
         android:id="@+id/editTextLoanAmount"
@@ -105,25 +122,40 @@
         android:id="@+id/loanCalculatorButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Loaning Calculator"
         android:padding="5dp"
-        android:layout_marginStart="110dp"
+        android:text="calculate"
+        app:layout_constraintBottom_toBottomOf="@id/loanCalculator"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/materialToolbar"
-        app:layout_constraintBottom_toBottomOf="@id/loanCalculator" />
+        app:layout_constraintTop_toBottomOf="@id/materialToolbar" />
 
+    <TextView
+        android:id="@+id/PurchasingPower"
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:layout_margin="8dp"
+        android:background="@color/black"
+        android:text="PURCHASING POWER"
+        android:textAlignment="center"
+        android:textColor="@color/cardview_light_background"
+        android:textSize="24dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/loanCalculator" />
 
     <com.google.android.material.appbar.MaterialToolbar
         android:id="@+id/productToolBar"
         android:layout_width="match_parent"
         android:layout_height="140dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="8dp"
         android:background="@color/grey"
         android:minHeight="?attr/actionBarSize"
         android:theme="?attr/actionBarTheme"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/loanCalculator" />
+        app:layout_constraintTop_toBottomOf="@+id/PurchasingPower" />
 
     <TextView
         android:id="@+id/product"
@@ -191,7 +223,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="5dp"
-        android:text="Purchasing Power Calculator"
+        android:text="Calculator"
         android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="@id/purchasingPowerCalculator"
         app:layout_constraintEnd_toEndOf="parent"
