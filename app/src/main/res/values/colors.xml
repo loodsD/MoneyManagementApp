@@ -10,4 +10,6 @@
     <color name="slightWhite">#FFF9F9</color>
     <color name="myBox">#F8F2F2</color>
     <color name="yellow">#FFF303</color>
+    <color name="money_gold">#FFDD0E</color>
+    <color name="grey">#CDCDCD</color>
 </resources>

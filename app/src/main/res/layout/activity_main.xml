@@ -18,8 +18,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/bottom_navigator"
-        app:itemBackground="@color/teal_200"
-        app:itemTextColor="@drawable/selector"
+        app:itemBackground="@color/grey"
+        app:itemTextColor="@color/money_gold"
         app:menu="@menu/menu"
         android:layout_alignParentBottom="true"/>
 

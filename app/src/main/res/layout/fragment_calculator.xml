@@ -10,7 +10,7 @@
         android:id="@+id/materialToolbar"
         android:layout_width="match_parent"
         android:layout_height="205dp"
-        android:background="@color/myBox"
+        android:background="@color/grey"
         android:minHeight="?attr/actionBarSize"
         android:theme="?attr/actionBarTheme"
         app:layout_constraintEnd_toEndOf="parent"
@@ -118,7 +118,7 @@
         android:layout_width="match_parent"
         android:layout_height="140dp"
         android:layout_marginTop="30dp"
-        android:background="@color/myBox"
+        android:background="@color/grey"
         android:minHeight="?attr/actionBarSize"
         android:theme="?attr/actionBarTheme"
         app:layout_constraintEnd_toEndOf="parent"
@@ -187,14 +187,16 @@
 
     <Button
         android:id="@+id/purchasingPowerCalculatorButton"
+        style="@style/Widget.AppCompat.Button.Colored"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Purchasing Power Calculator"
         android:padding="5dp"
-        android:layout_marginStart="70dp"
+        android:text="Purchasing Power Calculator"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="@id/purchasingPowerCalculator"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/purchasingPowerCalculator"
-        app:layout_constraintBottom_toBottomOf="@id/purchasingPowerCalculator" />
+        app:layout_constraintTop_toTopOf="@id/purchasingPowerCalculator" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
