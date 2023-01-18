@@ -223,7 +223,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="5dp"
-        android:text="Calculator"
+        android:text="Calculate"
         android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="@id/purchasingPowerCalculator"
         app:layout_constraintEnd_toEndOf="parent"
