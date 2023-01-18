@@ -8,6 +8,7 @@ class transaction {
     var reference : String = ""
     var amount : Double = 0.00
 
+    //class transaction to receive input from the inputfragment
     constructor(transType:String,transCategory:String,reference:String,amount:Double){
         this.transType = transType
         this.transCategory = transCategory

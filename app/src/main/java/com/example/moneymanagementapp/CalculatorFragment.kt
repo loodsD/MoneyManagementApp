@@ -2,6 +2,8 @@ package com.example.moneymanagementapp
 
 import android.app.AlertDialog
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -33,6 +35,12 @@ class CalculatorFragment : Fragment(R.layout.fragment_calculator) {
 
         val loanCalculate: Button = view.findViewById(R.id.loanCalculatorButton)
         val builder = AlertDialog.Builder(context)
+
+        addTextWatcher(editTextLoanAmount, loanCalculate)
+        addTextWatcher(editTextInterestRate, loanCalculate)
+        addTextWatcher(editTextMonthlyPay, loanCalculate)
+
+
         loanCalculate.setOnClickListener(){
             val loanAmount = editTextLoanAmount.text.toString().toDouble()
             val interestRate = editTextInterestRate.text.toString().toDouble()
@@ -58,6 +66,18 @@ class CalculatorFragment : Fragment(R.layout.fragment_calculator) {
         }
 
         val purchasingPowerCalculate:Button = view.findViewById(R.id.purchasingPowerCalculatorButton)
+
+        price.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+            }
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                if(!price.text.toString().trim().isEmpty()){
+                    purchasingPowerCalculate.isEnabled = true
+                }
+            }
+            override fun afterTextChanged(s: Editable?) {}
+        })
+
         purchasingPowerCalculate.setOnClickListener(){
             val selectedOption = options[option.selectedItemPosition].toString()
             val priceProduct = price.text.toString().toDouble()
@@ -94,14 +114,19 @@ class CalculatorFragment : Fragment(R.layout.fragment_calculator) {
         }
         return year
     }
-    override fun onDestroyView() {
-        super.onDestroyView()
-        option.onItemSelectedListener = null
-    }
+    fun addTextWatcher(editText: EditText, button: Button) {
+        editText.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+            }
 
-    override fun onDetach() {
-        super.onDetach()
-        option.onItemSelectedListener = null
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                if(!editTextLoanAmount.text.toString().trim().isEmpty() && !editTextInterestRate.text.toString().trim().isEmpty() && !editTextMonthlyPay.text.toString().trim().isEmpty()){
+                    button.isEnabled = true
+                }
+            }
+
+            override fun afterTextChanged(s: Editable?) {}
+        })
     }
     override fun onStop() {
         super.onStop()

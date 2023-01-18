@@ -19,7 +19,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/bottom_navigator"
         app:itemBackground="@color/grey"
-        app:itemTextColor="@color/money_gold"
+        app:itemTextColor="@color/black"
         app:menu="@menu/menu"
         android:layout_alignParentBottom="true"/>
 

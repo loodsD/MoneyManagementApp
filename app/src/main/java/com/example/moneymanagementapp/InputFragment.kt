@@ -54,19 +54,25 @@ class InputFragment : Fragment(R.layout.fragment_input) {
             here = "transactionCategory2"
         }
         var selectedCategory = ""
+        //this is the button that store the data that is inserted by the user
         storeButton.setOnClickListener{
             val selectedType = transactionType[transactionTypes.selectedItemPosition].toString()
             val subject = editTextSubject.text.toString()
+            //check the condition, make sure the transactionCategory is selected, and the reference and amount is not empty
             if((transactionCategory.checkedRadioButtonId != -1 || transactionCategory2.checkedRadioButtonId != -1) &&
                 subject != "" && editTextAmount.text.toString().toDouble() != 0.00 ){
+
                 val amount = editTextAmount.text.toString().toDouble()
                 if(here.equals("transactionCategory")){
                     selectedCategory = view.findViewById<RadioButton>(transactionCategory.checkedRadioButtonId).text.toString()
                 }else if(here.equals("transactionCategory2")){
                     selectedCategory = view.findViewById<RadioButton>(transactionCategory2.checkedRadioButtonId).text.toString()
                 }
+                //When all the data above is correct, instantiated transaction to receive these inputs
                 var transaction = transaction(selectedType,selectedCategory,subject,amount)
+                //call database
                 var db = DataBaseHandler(requireContext())
+                //insert data into the database
                 db.insertData(transaction)
             }else{
                 builder.setTitle("Data insufficient")

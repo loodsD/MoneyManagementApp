@@ -19,7 +19,7 @@ val COL_AMOUNT = "Amount"
 class DataBaseHandler(var context: Context) : SQLiteOpenHelper(context, DATABASE_NAME,null,1){
     override fun onCreate(db: SQLiteDatabase?) {
 
-
+        //create a table with correspond column, ID,Type,Category,Reference,Amount
         val createTable = "CREATE TABLE " + TABLE_NAME +
                 " (" + COL_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 COL_TYPE + " TEXT, " +
@@ -27,14 +27,15 @@ class DataBaseHandler(var context: Context) : SQLiteOpenHelper(context, DATABASE
                 COL_REFERENCE + " TEXT, " +
                 COL_AMOUNT + " DECIMAL(7,2))";
 
+        //execute the create table statement
         db?.execSQL(createTable)
-
     }
 
     override fun onUpgrade(db: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {
         TODO("Not yet implemented")
     }
 
+    //insert the data
     fun insertData(transaction: transaction){
 
         val db = this.writableDatabase
@@ -44,10 +45,10 @@ class DataBaseHandler(var context: Context) : SQLiteOpenHelper(context, DATABASE
         contentValue.put(COL_REFERENCE,transaction.reference)
         contentValue.put(COL_AMOUNT,transaction.amount)
 
+        //result is to make sure the data insert is successful
         var result = db.insert(TABLE_NAME,null,contentValue)
-        Log.d("tag",result.toString()+" ${transaction.transType.toString()}"
-                +" ${transaction.transCategory.toString()}"+" ${transaction.reference.toString()}"
-                +" ${transaction.amount.toString()}")
+
+        //if it is failed, then send a mesesage "failed" else "Success"
         if(result == -1.toLong()){
             Toast.makeText(context,"Failed",Toast.LENGTH_SHORT).show()
         }else{
