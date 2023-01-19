@@ -15,4 +15,7 @@ class transaction {
         this.reference = reference
         this.amount = amount
     }
+    constructor(){
+
+    }
 }

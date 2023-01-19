@@ -1,5 +1,6 @@
 package com.example.moneymanagementapp
 
+import android.annotation.SuppressLint
 import android.content.ContentValues
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
@@ -54,5 +55,25 @@ class DataBaseHandler(var context: Context) : SQLiteOpenHelper(context, DATABASE
         }else{
             Toast.makeText(context,"Success",Toast.LENGTH_SHORT).show()
         }
+    }
+
+    @SuppressLint("Range")
+    fun retrieveData(): MutableList<transaction>{
+        var store : MutableList<transaction> = ArrayList()
+
+        val db = this.readableDatabase
+        val query = "SELECT Category, SUM(Amount) AS SUM FROM Transaction1 WHERE Type = 'Money Out' GROUP BY Category"
+        val cursor= db.rawQuery(query,null)
+
+        if(cursor.moveToFirst()){
+            do{
+                var trans = transaction()
+                trans.transCategory = cursor.getString(0)
+                trans.amount = cursor.getString(1).toDouble()
+                store.add(trans)
+            }while(cursor.moveToNext())
+        }
+        cursor.close()
+        return store
     }
 }
